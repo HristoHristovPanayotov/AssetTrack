@@ -1,0 +1,50 @@
+@model AssetDetailsViewModel
+@{
+    ViewData["Title"] = "Delete Asset";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <h1 class="h3 mb-3 text-danger">
+            <i class="bi bi-exclamation-triangle"></i> Confirm Deletion
+        </h1>
+
+        <div class="alert alert-warning">
+            You are about to permanently remove this asset from active tracking.
+            This action cannot be undone.
+        </div>
+
+        <div class="card shadow-sm mb-3">
+            <div class="card-header fw-semibold">@Model.Name</div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-4">Serial Number</dt>
+                    <dd class="col-8"><code>@Model.SerialNumber</code></dd>
+
+                    <dt class="col-4">Model</dt>
+                    <dd class="col-8">@Model.Model</dd>
+
+                    <dt class="col-4">Category</dt>
+                    <dd class="col-8">@Model.CategoryName</dd>
+
+                    <dt class="col-4">Value</dt>
+                    <dd class="col-8">@Model.Value.ToString("C2")</dd>
+
+                    <dt class="col-4">Status</dt>
+                    <dd class="col-8">@Model.Status</dd>
+
+                    <dt class="col-4">Assigned To</dt>
+                    <dd class="col-8">@(Model.AssignedUserName ?? "Unassigned")</dd>
+                </dl>
+            </div>
+        </div>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash"></i> Delete Permanently
+            </button>
+            <a class="btn btn-outline-secondary" asp-action="Index">Cancel</a>
+        </form>
+    </div>
+</div>

@@ -1,4 +1,14 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+// Auto-dismiss TempData feedback banners after a short delay.
+(function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.alert.auto-dismiss').forEach(function (el) {
+            setTimeout(function () {
+                if (window.bootstrap && bootstrap.Alert) {
+                    bootstrap.Alert.getOrCreateInstance(el).close();
+                } else {
+                    el.style.display = 'none';
+                }
+            }, 5000);
+        });
+    });
+})();

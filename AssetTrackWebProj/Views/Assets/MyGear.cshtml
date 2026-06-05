@@ -1,0 +1,52 @@
+@model IEnumerable<AssetListItemViewModel>
+@{
+    ViewData["Title"] = "My Assigned Gear";
+
+    string StatusClass(AssetStatus s) => s switch
+    {
+        AssetStatus.Available => "bg-success",
+        AssetStatus.Assigned => "bg-primary",
+        AssetStatus.UnderMaintenance => "bg-warning text-dark",
+        AssetStatus.Retired => "bg-secondary",
+        _ => "bg-light text-dark"
+    };
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">My Assigned Gear</h1>
+    <a class="btn btn-outline-warning" asp-controller="Tickets" asp-action="Create">
+        <i class="bi bi-tools"></i> Report an Issue
+    </a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        You currently have no corporate hardware assigned to you.
+    </div>
+}
+else
+{
+    <div class="row g-3">
+        @foreach (var asset in Model)
+        {
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h5 class="card-title mb-1">@asset.Name</h5>
+                            <span class="badge status-badge @StatusClass(asset.Status)">@asset.Status</span>
+                        </div>
+                        <h6 class="card-subtitle text-muted mb-2">@asset.CategoryName</h6>
+                        <p class="card-text mb-1"><small>Model: @asset.Model</small></p>
+                        <p class="card-text"><small>Serial: <code>@asset.SerialNumber</code></small></p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a class="btn btn-sm btn-outline-secondary"
+                           asp-action="Details" asp-route-id="@asset.Id">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

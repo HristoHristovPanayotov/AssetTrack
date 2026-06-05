@@ -1,0 +1,55 @@
+@model TicketInputModel
+@{
+    ViewData["Title"] = "Report an Issue";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <h1 class="h3 mb-3">Report a Malfunction</h1>
+        <p class="text-muted">
+            File a maintenance ticket against a piece of hardware. IT will be
+            notified and the asset will be flagged for service.
+        </p>
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="AssetId" class="form-label"></label>
+                        <select asp-for="AssetId" class="form-select"
+                                asp-items="@(new SelectList(Model.AvailableAssets, nameof(AssetListItemViewModel.Id), nameof(AssetListItemViewModel.Name)))">
+                            <option value="">-- Select the affected asset --</option>
+                        </select>
+                        <span asp-validation-for="AssetId" class="text-danger"></span>
+                        @if (!Model.AvailableAssets.Any())
+                        {
+                            <div class="form-text text-warning">
+                                You have no assets available to report against.
+                            </div>
+                        }
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Describe the problem</label>
+                        <textarea asp-for="Description" class="form-control" rows="4"
+                                  placeholder="e.g. The laptop will not power on after the latest update."></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-warning">
+                            <i class="bi bi-send"></i> Submit Ticket
+                        </button>
+                        <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
