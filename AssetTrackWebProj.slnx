@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="AssetTrackWebProj/AssetTrackWebProj.csproj" />
+  <Project Path="AssetTrackWebProj.Data/AssetTrackWebProj.Data.csproj" />
+  <Project Path="AssetTrackWebProj.Services/AssetTrackWebProj.Services.csproj" />
+  <Project Path="AssetTrackWebProj.Tests/AssetTrackWebProj.Tests.csproj" />
+  <Project Path="AssetTrackWebProj/AssetTrackWebProj.Web.csproj" />
 </Solution>
