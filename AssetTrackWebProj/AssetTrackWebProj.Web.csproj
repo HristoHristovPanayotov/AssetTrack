@@ -4,9 +4,6 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <!-- Smart App Control blocks the unsigned native apphost .exe. Launch via the
-         signed `dotnet` host (dotnet AssetTrackWebProj.Web.dll) instead. -->
-    <UseAppHost>false</UseAppHost>
   </PropertyGroup>
 
   <ItemGroup>
