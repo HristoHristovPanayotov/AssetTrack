@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MockQueryable.EntityFrameworkCore" Version="10.0.8" />
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="NUnit" Version="4.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AssetTrackWebProj.Data\AssetTrackWebProj.Data.csproj" />
+    <ProjectReference Include="..\AssetTrackWebProj.Services\AssetTrackWebProj.Services.csproj" />
+  </ItemGroup>
+
 </Project>

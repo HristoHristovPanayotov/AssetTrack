@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AssetTrackWebProj.Data\AssetTrackWebProj.Data.csproj" />
+    <ProjectReference Include="..\AssetTrackWebProj.Services\AssetTrackWebProj.Services.csproj" />
   </ItemGroup>
 
 </Project>
